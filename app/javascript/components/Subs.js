@@ -7,11 +7,16 @@ import React from 'react';
 // props are propertys pass into the 
 // component from the controller
 // const Subs = ({props, keys}) => {
+
+
 const Subs = ({ subs }) => {
   return (
     <>
-      <h1>Subs Page</h1>
-      <a href="/subs/new">Add Sub</a>
+      <h1 className='my-para'>Subs Page</h1>
+      <a href="/subs/new">
+        <button className="btn btn-dark">Add New Sub</button>
+      </a>
+      {/* <button className="btn btn-dark">Click Me!</button> */}
       { subs.map( (sub) => (
         <>
           <h3>{sub.name}</h3>

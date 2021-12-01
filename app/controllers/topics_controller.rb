@@ -5,35 +5,35 @@ class TopicsController < ApplicationController
   def index
     # @topics = Topic.all 
     @topics = @sub.topics
-    render component: 'Topics', props: { topics: @topics }
+    render component: 'Topics', props: { sub: @sub, topics: @topics, taco: 'tuesday' }
   end
 
   def show
     # @topic = Topic.find(params[:id])
     @topic = @sub.topics.find(params[:id])
-    render component: 'Topic', props: { topic: @topic }
+    render component: 'Topic', props: { sub: @sub, topic: @topic }
   end
 
   def new
     # @topic = Topic.new
     @topic = @sub.topics.new
-    render component: 'TopicNew', props: { topic: @topic }
+    render component: 'TopicNew', props: { sub: @sub, topic: @topic }
   end
 
   def create
     # @topic = Topic.new(topic_params)
     @topic = @sub.topics.new(topic_params)
     if @topic.save
-      redirect_to subs_path
+      redirect_to sub_topics_path(@sub)
     else
-      render component: 'TopicNew', props: { topic: @topic }
+      render component: 'TopicNew', props: { sub: @sub, topic: @topic }
     end
   end
 
   def edit
     # @topic = Topic.find(params[:id])
     @topic = @sub.topics.find(params[:id])
-    render component: 'TopicEdit', props: { topic: @topic }
+    render component: 'TopicEdit', props: { sub: @sub, topic: @topic }
   end
 
   def update
@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
     if @topic.update(topic_params)
       redirect_to subs_path
     else
-      render component: 'TopicEdit', props: { topic: @topic }
+      render component: 'TopicEdit', props: { sub: @sub, topic: @topic }
     end
   end
 
